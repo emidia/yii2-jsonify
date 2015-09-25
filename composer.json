@@ -1,0 +1,17 @@
+{
+    "name": "emidia/yii2-jsonify",
+    "description": "Behavior that convert array to JSON before save data in model",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rodrigo Zani",
+            "email": "rodrigo.zhs@gmail.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+          "emidia\\yii2\\behaviors\\": ""
+      }
+    },    
+    "require": {}    
+}
