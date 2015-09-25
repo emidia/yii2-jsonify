@@ -2,6 +2,23 @@
 
 Behavior that convert array to JSON before save data in model
 
+## Install
+
+Install via composer 
+
+```shell
+composer require emidia/yii2-jsonify
+```
+
+Or you may add dependency manually in composer.json:
+
+```
+ "emidia/yii2-jsonify": "*"
+```
+
+
+## How to use
+
 To use JsonifyBehavior, insert the following code to your ActiveRecord class:
 
 ```php

@@ -9,9 +9,8 @@
 namespace emidia\yii2\behaviors;
 
 use yii\behaviors\AttributeBehavior;
-use yii\base\InvalidCallException;
+use yii\base\InvalidConfigException;
 use yii\db\BaseActiveRecord;
-use yii\db\Expression;
 
 /**
  * Behavior that convert array to JSON before save data in model
@@ -82,9 +81,12 @@ class JsonifyBehavior extends AttributeBehavior
 
 	if (empty($this->attributes)) {
 	    $this->attributes = [
-		BaseActiveRecord::EVENT_BEFORE_INSERT => $this->attribute,
-		BaseActiveRecord::EVENT_BEFORE_UPDATE => $this->attribute,
+		BaseActiveRecord::EVENT_BEFORE_VALIDATE => $this->attribute,
 	    ];
+	}
+
+	if ($this->attribute === null) {
+	    throw new InvalidConfigException('Either "attribute" or "value" property must be specified.');
 	}
     }
 
@@ -93,7 +95,14 @@ class JsonifyBehavior extends AttributeBehavior
      */
     protected function getValue($event)
     {
-	return json_encode($this->value, $this->jsonOptions, $this->jsonDeep);
+	$owner = $this->owner;
+	$json = '{}';
+
+	if (!empty($owner->{$this->attribute})) {
+	    $json = json_encode($owner->{$this->attribute}, $this->jsonOptions, $this->jsonDeep);
+	}
+
+	return $json;
     }
 
 }
