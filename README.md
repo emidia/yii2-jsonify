@@ -54,7 +54,7 @@ So, if set an array in model's attribute, this behavior will convert all data to
 $model->setAttributes([
   'data' => [
     'id'=> 12,
-    'title' => 'test''
+    'title' => 'test'
   ]
 ]);
 ```
