@@ -47,3 +47,14 @@ public function behaviors()
     ];
 }
 ```
+
+So, if set an array in model's attribute, this behavior will convert all data to JSON
+
+```php
+$model->setAttributes([
+  'data' => [
+    'id'=> 12,
+    'title' => 'test''
+  ]
+]);
+```
